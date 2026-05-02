@@ -1,94 +1,152 @@
 :root {
-    --bg-color: #f0f0f0;
-    --container-bg: transparent;
-    --text-color: #333;
-    --number-bg: #fff;
-    --number-border: #ccc;
-    --button-bg: #fff;
-    --button-text: #333;
+    --bg-color: #f8f9fa;
+    --text-color: #212529;
+    --header-color: #343a40;
+    --subtitle-color: #6c757d;
+    --number-bg: #ffffff;
+    --number-border: #dee2e6;
+    --number-text: #495057;
+    --button-bg: #007bff;
+    --button-text: #ffffff;
+    --button-hover: #0056b3;
+    --toggle-bg: #e9ecef;
+    --card-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
 }
 
-body.dark-mode {
-    --bg-color: #1a1a1a;
-    --text-color: #f0f0f0;
-    --number-bg: #333;
-    --number-border: #555;
-    --button-bg: #444;
-    --button-text: #f0f0f0;
+.dark-mode {
+    --bg-color: #121212;
+    --text-color: #e9ecef;
+    --header-color: #f8f9fa;
+    --subtitle-color: #adb5bd;
+    --number-bg: #1e1e1e;
+    --number-border: #333333;
+    --number-text: #f8f9fa;
+    --button-bg: #375a7f;
+    --button-text: #ffffff;
+    --button-hover: #2b4764;
+    --toggle-bg: #2c2c2c;
+    --card-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+* {
+    box-sizing: border-box;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    margin: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-color: var(--bg-color);
-    color: var(--text-color);
-    margin: 0;
-    transition: background-color 0.3s, color 0.3s;
 }
 
 .container {
+    width: 90%;
+    max-width: 500px;
+    padding: 3rem;
+    background-color: var(--number-bg);
+    border-radius: 24px;
+    box-shadow: var(--card-shadow);
     text-align: center;
-    padding: 2rem;
-    border-radius: 15px;
-    background-color: var(--container-bg);
+}
+
+header {
+    margin-bottom: 2rem;
+}
+
+.top-bar {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 1rem;
+}
+
+h1 {
+    font-size: 2rem;
+    color: var(--header-color);
+    margin: 0 0 0.5rem 0;
+}
+
+.subtitle {
+    color: var(--subtitle-color);
+    font-size: 1rem;
+    margin: 0;
 }
 
 .lotto-numbers {
     display: flex;
     justify-content: center;
-    margin: 30px 0;
+    gap: 12px;
+    margin: 3rem 0;
     flex-wrap: wrap;
-    gap: 10px;
 }
 
 .number {
-    width: 50px;
-    height: 50px;
+    width: 54px;
+    height: 54px;
     border-radius: 50%;
     background-color: var(--number-bg);
     border: 2px solid var(--number-border);
+    color: var(--number-text);
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1.2rem;
-    font-weight: bold;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    transition: transform 0.2s, background-color 0.3s;
+    font-size: 1.3rem;
+    font-weight: 700;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    transform: translateY(0);
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .number:hover {
-    transform: scale(1.1);
+    transform: translateY(-5px);
+    border-color: var(--button-bg);
 }
 
 .controls {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    align-items: center;
+    margin-top: 2rem;
 }
 
-button {
-    padding: 12px 24px;
-    font-size: 1rem;
-    cursor: pointer;
-    border-radius: 8px;
-    border: 1px solid var(--number-border);
+#generate-btn {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1.1rem;
+    font-weight: 600;
     background-color: var(--button-bg);
     color: var(--button-text);
-    transition: all 0.2s;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 123, 255, 0.2);
+    transition: transform 0.1s active, filter 0.2s;
 }
 
-button:hover {
-    filter: brightness(0.9);
+#generate-btn:hover {
+    background-color: var(--button-hover);
+    transform: translateY(-2px);
+}
+
+#generate-btn:active {
+    transform: translateY(0);
 }
 
 #theme-toggle {
-    background: none;
+    background-color: var(--toggle-bg);
     border: none;
-    font-size: 1.5rem;
-    padding: 5px;
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    font-size: 1.2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     cursor: pointer;
+    transition: transform 0.2s;
+}
+
+#theme-toggle:hover {
+    transform: rotate(15deg);
 }

@@ -3,22 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lotto Number Generator</title>
+    <title>🎰 Lotto Number Generator</title>
     <link rel="stylesheet" href="style.css">
+    <!-- Blocking script to prevent theme flickering -->
+    <script>
+        (function() {
+            const theme = localStorage.getItem('theme');
+            if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark-mode');
+                document.body?.classList.add('dark-mode');
+            }
+        })();
+    </script>
 </head>
 <body>
     <div class="container">
         <header>
-            <button id="theme-toggle" title="Toggle Dark/Light Mode">🌓</button>
+            <div class="top-bar">
+                <button id="theme-toggle" aria-label="Toggle Dark/Light Mode">🌙</button>
+            </div>
             <h1>Lotto Number Generator</h1>
+            <p class="subtitle">Generate your lucky numbers with one click!</p>
         </header>
         
-        <div class="lotto-numbers">
+        <div class="lotto-numbers" id="lotto-display">
             <!-- Numbers will be generated here -->
         </div>
 
         <div class="controls">
-            <button id="generate-btn">Generate Numbers</button>
+            <button id="generate-btn">Generate Lucky Numbers</button>
         </div>
     </div>
     <script src="main.js"></script>
