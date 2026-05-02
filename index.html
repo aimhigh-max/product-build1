@@ -3,15 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🎰 Lotto Number Generator</title>
+    <title>🐾 Animal Face Test (Dog or Cat?)</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Blocking script to prevent theme flickering -->
     <script>
         (function() {
             const theme = localStorage.getItem('theme');
             if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
                 document.documentElement.classList.add('dark-mode');
-                document.body?.classList.add('dark-mode');
             }
         })();
     </script>
@@ -22,22 +20,40 @@
             <div class="top-bar">
                 <button id="theme-toggle" aria-label="Toggle Dark/Light Mode">🌙</button>
             </div>
-            <h1>Lotto Number Generator</h1>
-            <p class="subtitle">Generate your lucky numbers with one click!</p>
+            <h1>🐾 Animal Face Test</h1>
+            <p class="subtitle">Are you more like a Dog or a Cat?</p>
         </header>
-        
-        <div class="lotto-numbers" id="lotto-display">
-            <!-- Numbers will be generated here -->
-        </div>
 
-        <div class="controls">
-            <button id="generate-btn">Generate Lucky Numbers</button>
-        </div>
+        <main class="test-area">
+            <div id="upload-container" class="upload-box">
+                <input type="file" id="image-upload" accept="image/*" hidden>
+                <label for="image-upload" class="upload-label">
+                    <span class="upload-icon">📸</span>
+                    <span class="upload-text">Upload Photo or Click to Start</span>
+                </label>
+            </div>
+            
+            <div id="webcam-container" class="video-container" style="display: none;"></div>
+            
+            <div id="loading" class="loading-spinner" style="display: none;">
+                <div class="spinner"></div>
+                <p>Analyzing face...</p>
+            </div>
+
+            <div id="result-container" class="result-box" style="display: none;">
+                <img id="face-image" src="" alt="Your face" style="display: none; max-width: 100%; border-radius: 15px; margin-bottom: 20px;">
+                <div id="label-container"></div>
+                <button id="restart-btn" class="secondary-btn">Try Again</button>
+            </div>
+
+            <div class="controls">
+                <button id="start-webcam-btn">Use Webcam</button>
+            </div>
+        </main>
 
         <section class="partnership-section">
             <hr>
             <h2>Partnership Inquiry</h2>
-            <p class="form-desc">Interested in collaborating? Send us a message!</p>
             <form action="https://formspree.io/f/mvzlgwel" method="POST" id="contact-form">
                 <div class="form-group">
                     <input type="text" name="name" placeholder="Your Name" required>
@@ -51,30 +67,25 @@
                 <button type="submit" class="submit-btn">Send Inquiry</button>
             </form>
         </section>
+
         <section class="comments-section">
             <hr>
             <h2>Comments</h2>
             <div id="disqus_thread"></div>
             <script>
-                /**
-                *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-                *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
-                /*
-                var disqus_config = function () {
-                this.page.url = window.location.href;  // Replace PAGE_URL with your page's canonical URL variable
-                this.page.identifier = 'lotto-generator-home'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-                };
-                */
-                (function() { // DON'T EDIT BELOW THIS LINE
+                (function() {
                 var d = document, s = d.createElement('script');
                 s.src = 'https://aimhigh-max.disqus.com/embed.js';
                 s.setAttribute('data-timestamp', +new Date());
                 (d.head || d.body).appendChild(s);
                 })();
             </script>
-            <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
         </section>
     </div>
+
+    <!-- TensorFlow.js and Teachable Machine -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
     <script src="main.js"></script>
 </body>
 </html>

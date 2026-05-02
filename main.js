@@ -1,123 +1,159 @@
-const lottoNumbersDiv = document.querySelector('#lotto-display');
-const generateBtn = document.querySelector('#generate-btn');
-const themeToggle = document.querySelector('#theme-toggle');
-const body = document.body;
+const URL = "https://teachablemachine.withgoogle.com/models/5_-QztO6B/";
 
-/**
- * Theme Management
- */
+let model, webcam, labelContainer, maxPredictions;
+const body = document.body;
+const themeToggle = document.querySelector('#theme-toggle');
+
+// Theme Logic
 const updateThemeUI = () => {
     const isDark = body.classList.contains('dark-mode');
     themeToggle.textContent = isDark ? '☀️' : '🌙';
-    themeToggle.title = isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode';
 };
 
-// Sync UI with initial state (already set by head script)
 updateThemeUI();
 
 themeToggle.addEventListener('click', () => {
     body.classList.toggle('dark-mode');
-    const isDark = body.classList.contains('dark-mode');
-    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    localStorage.setItem('theme', body.classList.contains('dark-mode') ? 'dark' : 'light');
     updateThemeUI();
 });
 
-/**
- * Lotto Generation
- */
-function generateNumbers() {
-    // Clear previous numbers with a slight fade effect if desired
-    lottoNumbersDiv.innerHTML = '';
-    
-    const numbers = new Set();
-    while (numbers.size < 6) {
-        const randomNumber = Math.floor(Math.random() * 45) + 1;
-        numbers.add(randomNumber);
-    }
-
-    const sortedNumbers = Array.from(numbers).sort((a, b) => a - b);
-
-    sortedNumbers.forEach((number, index) => {
-        const numberDiv = document.createElement('div');
-        numberDiv.classList.add('number');
-        numberDiv.textContent = number;
-        
-        // Staggered animation effect
-        numberDiv.style.opacity = '0';
-        numberDiv.style.transform = 'translateY(20px)';
-        lottoNumbersDiv.appendChild(numberDiv);
-        
-        setTimeout(() => {
-            numberDiv.style.transition = 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
-            numberDiv.style.opacity = '1';
-            numberDiv.style.transform = 'translateY(0)';
-        }, index * 100);
-    });
+// AI Logic
+async function loadModel() {
+    if (model) return;
+    document.getElementById('loading').style.display = 'block';
+    const modelURL = URL + "model.json";
+    const metadataURL = URL + "metadata.json";
+    model = await tmImage.load(modelURL, metadataURL);
+    maxPredictions = model.getTotalClasses();
+    document.getElementById('loading').style.display = 'none';
 }
 
-generateBtn.addEventListener('click', generateNumbers);
+// Webcam Setup
+async function startWebcam() {
+    await loadModel();
+    document.getElementById('upload-container').style.display = 'none';
+    document.getElementById('webcam-container').style.display = 'block';
+    document.getElementById('result-container').style.display = 'block';
+    document.getElementById('start-webcam-btn').style.display = 'none';
 
-// Initial generation
-generateNumbers();
+    const flip = true;
+    webcam = new tmImage.Webcam(400, 400, flip);
+    await webcam.setup();
+    await webcam.play();
+    window.requestAnimationFrame(loop);
 
-/**
- * Formspree AJAX Submission
- */
-const contactForm = document.querySelector('#contact-form');
+    document.getElementById("webcam-container").appendChild(webcam.canvas);
+    labelContainer = document.getElementById("label-container");
+    labelContainer.innerHTML = '';
+    for (let i = 0; i < maxPredictions; i++) {
+        const item = document.createElement("div");
+        item.className = 'prediction-item';
+        item.innerHTML = `
+            <div class="prediction-label">
+                <span></span>
+                <span>0%</span>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+        `;
+        labelContainer.appendChild(item);
+    }
+}
 
-if (contactForm) {
-    contactForm.addEventListener('submit', async (event) => {
-        event.preventDefault();
-        const status = document.createElement('p');
-        status.style.marginTop = '10px';
-        status.style.fontSize = '0.9rem';
-        status.style.fontWeight = 'bold';
+async function loop() {
+    if (webcam && webcam.canvas) {
+        webcam.update();
+        await predict(webcam.canvas);
+        window.requestAnimationFrame(loop);
+    }
+}
+
+// Image Upload Setup
+const imageUpload = document.getElementById('image-upload');
+imageUpload.addEventListener('change', async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    await loadModel();
+    
+    const reader = new FileReader();
+    reader.onload = async (event) => {
+        const img = new Image();
+        img.onload = async () => {
+            document.getElementById('upload-container').style.display = 'none';
+            document.getElementById('result-container').style.display = 'block';
+            document.getElementById('face-image').src = img.src;
+            document.getElementById('face-image').style.display = 'block';
+            document.getElementById('start-webcam-btn').style.display = 'none';
+            
+            labelContainer = document.getElementById("label-container");
+            labelContainer.innerHTML = '';
+            for (let i = 0; i < maxPredictions; i++) {
+                const item = document.createElement("div");
+                item.className = 'prediction-item';
+                item.innerHTML = `
+                    <div class="prediction-label">
+                        <span></span>
+                        <span>0%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill"></div>
+                    </div>
+                `;
+                labelContainer.appendChild(item);
+            }
+            await predict(img);
+        };
+        img.src = event.target.result;
+    };
+    reader.readAsDataURL(file);
+});
+
+async function predict(input) {
+    const prediction = await model.predict(input);
+    for (let i = 0; i < maxPredictions; i++) {
+        const className = prediction[i].className;
+        const probability = (prediction[i].probability * 100).toFixed(0);
         
-        const data = new FormData(event.target);
+        const item = labelContainer.childNodes[i];
+        item.querySelector('.prediction-label span:first-child').textContent = className;
+        item.querySelector('.prediction-label span:last-child').textContent = probability + '%';
+        item.querySelector('.progress-fill').style.width = probability + '%';
+    }
+}
+
+document.getElementById('start-webcam-btn').addEventListener('click', startWebcam);
+document.getElementById('restart-btn').addEventListener('click', () => {
+    location.reload();
+});
+
+// Formspree AJAX
+const contactForm = document.querySelector('#contact-form');
+if (contactForm) {
+    contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const data = new FormData(e.target);
         const submitBtn = contactForm.querySelector('.submit-btn');
-        const originalBtnText = submitBtn.textContent;
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Sending...';
         
         try {
-            submitBtn.disabled = true;
-            submitBtn.textContent = 'Sending...';
-            
-            const response = await fetch(event.target.action, {
-                method: contactForm.method,
+            const response = await fetch(e.target.action, {
+                method: 'POST',
                 body: data,
-                headers: {
-                    'Accept': 'application/json'
-                }
+                headers: { 'Accept': 'application/json' }
             });
-            
             if (response.ok) {
-                status.textContent = 'Thanks! Your inquiry has been sent.';
-                status.style.color = '#28a745';
+                alert('Success! Your inquiry has been sent.');
                 contactForm.reset();
-            } else {
-                const result = await response.json();
-                status.textContent = result.errors ? result.errors.map(error => error.message).join(', ') : 'Oops! There was a problem.';
-                status.style.color = '#dc3545';
             }
         } catch (error) {
-            status.textContent = 'Oops! There was a problem submitting your form';
-            status.style.color = '#dc3545';
+            alert('Oops! Something went wrong.');
         } finally {
             submitBtn.disabled = false;
-            submitBtn.textContent = originalBtnText;
-            
-            // Remove old status if exists
-            const oldStatus = contactForm.querySelector('.form-status');
-            if (oldStatus) oldStatus.remove();
-            
-            status.classList.add('form-status');
-            contactForm.appendChild(status);
-            
-            // Fade out message after 5 seconds
-            setTimeout(() => {
-                status.style.transition = 'opacity 1s';
-                status.style.opacity = '0';
-                setTimeout(() => status.remove(), 1000);
-            }, 5000);
+            submitBtn.textContent = 'Send Inquiry';
         }
     });
 }

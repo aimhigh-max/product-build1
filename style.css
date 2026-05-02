@@ -3,14 +3,15 @@
     --text-color: #212529;
     --header-color: #343a40;
     --subtitle-color: #6c757d;
-    --number-bg: #ffffff;
-    --number-border: #dee2e6;
-    --number-text: #495057;
+    --card-bg: #ffffff;
+    --border-color: #dee2e6;
     --button-bg: #007bff;
     --button-text: #ffffff;
     --button-hover: #0056b3;
     --toggle-bg: #e9ecef;
     --card-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    --progress-bg: #e9ecef;
+    --primary-color: #007bff;
 }
 
 .dark-mode {
@@ -18,14 +19,14 @@
     --text-color: #e9ecef;
     --header-color: #f8f9fa;
     --subtitle-color: #adb5bd;
-    --number-bg: #1e1e1e;
-    --number-border: #333333;
-    --number-text: #f8f9fa;
+    --card-bg: #1e1e1e;
+    --border-color: #333333;
     --button-bg: #375a7f;
     --button-text: #ffffff;
     --button-hover: #2b4764;
     --toggle-bg: #2c2c2c;
     --card-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    --progress-bg: #333;
 }
 
 * {
@@ -45,13 +46,14 @@ body {
 }
 
 .container {
-    width: 90%;
-    max-width: 500px;
-    padding: 3rem;
-    background-color: var(--number-bg);
+    width: 95%;
+    max-width: 600px;
+    padding: 2rem;
+    background-color: var(--card-bg);
     border-radius: 24px;
     box-shadow: var(--card-shadow);
     text-align: center;
+    margin: 20px 0;
 }
 
 header {
@@ -76,83 +78,125 @@ h1 {
     margin: 0;
 }
 
-.lotto-numbers {
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-    margin: 3rem 0;
-    flex-wrap: wrap;
+/* Test Area */
+.test-area {
+    margin-bottom: 3rem;
 }
 
-.number {
-    width: 54px;
-    height: 54px;
-    border-radius: 50%;
-    background-color: var(--number-bg);
-    border: 2px solid var(--number-border);
-    color: var(--number-text);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.3rem;
-    font-weight: 700;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-    transform: translateY(0);
-    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+.upload-box {
+    border: 3px dashed var(--border-color);
+    border-radius: 20px;
+    padding: 3rem;
+    cursor: pointer;
+    transition: all 0.3s;
 }
 
-.number:hover {
-    transform: translateY(-5px);
+.upload-box:hover {
     border-color: var(--button-bg);
+    background-color: rgba(0, 123, 255, 0.05);
 }
 
+.upload-label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    cursor: pointer;
+}
+
+.upload-icon {
+    font-size: 3rem;
+}
+
+.video-container {
+    width: 100%;
+    overflow: hidden;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    background: #000;
+}
+
+.video-container canvas {
+    width: 100% !important;
+    height: auto !important;
+}
+
+/* Results */
+.result-box {
+    margin-top: 2rem;
+}
+
+.prediction-item {
+    margin-bottom: 1rem;
+    text-align: left;
+}
+
+.prediction-label {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.progress-bar {
+    height: 12px;
+    background-color: var(--progress-bg);
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background-color: var(--primary-color);
+    width: 0%;
+    transition: width 0.5s ease;
+}
+
+/* Controls */
 .controls {
     margin-top: 2rem;
 }
 
-#generate-btn {
-    width: 100%;
-    padding: 1rem;
-    font-size: 1.1rem;
+button {
+    padding: 1rem 2rem;
+    font-size: 1rem;
     font-weight: 600;
-    background-color: var(--button-bg);
-    color: var(--button-text);
     border: none;
     border-radius: 12px;
     cursor: pointer;
-    box-shadow: 0 4px 15px rgba(0, 123, 255, 0.2);
-    transition: transform 0.1s active, filter 0.2s;
+    transition: all 0.2s;
 }
 
-#generate-btn:hover {
-    background-color: var(--button-hover);
+#start-webcam-btn, .submit-btn {
+    background-color: var(--button-bg);
+    color: var(--button-text);
+    width: 100%;
+}
+
+.secondary-btn {
+    background-color: var(--toggle-bg);
+    color: var(--text-color);
+    margin-top: 10px;
+}
+
+button:hover {
+    filter: brightness(0.9);
     transform: translateY(-2px);
-}
-
-#generate-btn:active {
-    transform: translateY(0);
 }
 
 #theme-toggle {
     background-color: var(--toggle-bg);
-    border: none;
     width: 44px;
     height: 44px;
     border-radius: 12px;
-    font-size: 1.2rem;
     display: flex;
     justify-content: center;
     align-items: center;
-    cursor: pointer;
-    transition: transform 0.2s;
+    font-size: 1.2rem;
 }
 
-#theme-toggle:hover {
-    transform: rotate(15deg);
-}
-
-/* Partnership Section */
-.partnership-section {
+/* Sections */
+.partnership-section, .comments-section {
     margin-top: 3rem;
     text-align: left;
 }
@@ -160,75 +204,39 @@ h1 {
 hr {
     border: 0;
     height: 1px;
-    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), var(--number-border), rgba(0, 0, 0, 0));
-    margin-bottom: 2rem;
-}
-
-.partnership-section h2 {
-    font-size: 1.5rem;
-    margin-bottom: 0.5rem;
-    text-align: center;
-}
-
-.form-desc {
-    font-size: 0.9rem;
-    color: var(--subtitle-color);
-    text-align: center;
-    margin-bottom: 1.5rem;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), var(--border-color), rgba(0, 0, 0, 0));
+    margin: 2rem 0;
 }
 
 .form-group {
     margin-bottom: 1rem;
 }
 
-input, textarea {
+input[type="text"], input[type="email"], textarea {
     width: 100%;
     padding: 0.8rem;
     border-radius: 8px;
-    border: 1px solid var(--number-border);
+    border: 1px solid var(--border-color);
     background-color: var(--bg-color);
     color: var(--text-color);
     font-family: inherit;
-    font-size: 1rem;
 }
 
-input:focus, textarea:focus {
-    outline: none;
-    border-color: var(--button-bg);
+.loading-spinner {
+    padding: 2rem;
 }
 
-textarea {
-    height: 100px;
-    resize: vertical;
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid var(--progress-bg);
+    border-top: 4px solid var(--primary-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 10px;
 }
 
-.submit-btn {
-    width: 100%;
-    padding: 0.8rem;
-    font-size: 1rem;
-    font-weight: 600;
-    background-color: var(--toggle-bg);
-    color: var(--text-color);
-    border: 1px solid var(--number-border);
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.2s;
-}
-
-.submit-btn:hover {
-    background-color: var(--button-bg);
-    color: white;
-    border-color: var(--button-bg);
-}
-
-/* Comments Section */
-.comments-section {
-    margin-top: 3rem;
-    text-align: left;
-}
-
-.comments-section h2 {
-    font-size: 1.5rem;
-    margin-bottom: 1.5rem;
-    text-align: center;
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
