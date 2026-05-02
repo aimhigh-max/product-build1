@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | 🐾 AI & 🎰 Lotto</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        (function() {
+            const theme = localStorage.getItem('theme');
+            if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark-mode');
+            }
+        })();
+    </script>
+</head>
+<body>
+    <header class="main-header">
+        <nav class="nav-container">
+            <div class="logo">
+                <a href="index.html">🐾 AI & 🎰 Lotto</a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <button id="theme-toggle" aria-label="Toggle Dark/Light Mode">🌙</button>
+        </nav>
+    </header>
+
+    <div class="container">
+        <section class="content-page">
+            <h1>About AI & Lotto</h1>
+            <p>Welcome to <strong>AI & Lotto</strong>, your unique destination for exploring the intersection of artificial intelligence and personal luck. Our mission is to provide fun, engaging, and innovative tools that bring a little extra excitement to your day.</p>
+            
+            <h3>The AI Animal Face Test</h3>
+            <p>Our flagship feature uses advanced machine learning models (powered by TensorFlow.js and Teachable Machine) to analyze facial features and classify them into popular "animal face" types. Whether you're a Dog type or a Cat type, our AI provides a scientific yet playful perspective on your persona.</p>
+
+            <h3>The Lucky Lotto Generator</h3>
+            <p>We believe everyone needs a bit of luck. Our lotto generator uses cryptographically secure random number generation to provide you with a fresh set of lucky numbers for your next lottery attempt. It's simple, fair, and fun!</p>
+
+            <h3>Our Commitment</h3>
+            <p>We are dedicated to building high-quality, user-friendly applications that respect your privacy and provide genuine value. We are constantly improving our models and adding new features based on community feedback.</p>
+        </section>
+    </div>
+
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-info">
+                <p>&copy; 2026 AI & Lotto. All rights reserved.</p>
+            </div>
+            <ul class="footer-links">
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="privacy.html">Privacy Policy</a></li>
+                <li><a href="terms.html">Terms of Service</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+</html>

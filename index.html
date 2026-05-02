@@ -3,11 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🐾 Animal Face Test (Dog or Cat?)</title>
+    <title>🐾 Animal Face Test & 🎰 Lotto Generator</title>
+    <meta name="description" content="Discover if you are a Dog or Cat face with our AI-powered test and get your lucky lotto numbers today!">
     <meta name="google-adsense-account" content="ca-pub-1670359000913052">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1670359000913052"
      crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style.css">
+    <!-- Blocking script to prevent theme flickering -->
     <script>
         (function() {
             const theme = localStorage.getItem('theme');
@@ -18,17 +20,32 @@
     </script>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <div class="top-bar">
-                <button id="theme-toggle" aria-label="Toggle Dark/Light Mode">🌙</button>
+    <header class="main-header">
+        <nav class="nav-container">
+            <div class="logo">
+                <a href="index.html">🐾 AI & 🎰 Lotto</a>
             </div>
-            <h1>🐾 Animal Face Test</h1>
-            <p class="subtitle">Are you more like a Dog or a Cat?</p>
-        </header>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <button id="theme-toggle" aria-label="Toggle Dark/Light Mode">🌙</button>
+        </nav>
+    </header>
+
+    <div class="container">
+        <section class="hero-section">
+            <h1>Find Your Animal Face & Your Fortune</h1>
+            <p class="hero-subtitle">Combining advanced AI technology with classic luck generation.</p>
+        </section>
 
         <main class="test-area">
-            <!-- Animal Face Test content... -->
+            <header>
+                <h2>🐾 Animal Face Test</h2>
+                <p class="subtitle">Are you more like a Dog or a Cat? Upload a photo to find out!</p>
+            </header>
+
             <div id="upload-container" class="upload-box">
                 <input type="file" id="image-upload" accept="image/*" hidden>
                 <label for="image-upload" class="upload-label">
@@ -41,7 +58,7 @@
             
             <div id="loading" class="loading-spinner" style="display: none;">
                 <div class="spinner"></div>
-                <p>Analyzing face...</p>
+                <p>Analyzing face with AI...</p>
             </div>
 
             <div id="result-container" class="result-box" style="display: none;">
@@ -51,51 +68,53 @@
             </div>
 
             <div class="controls">
-                <button id="start-webcam-btn">Use Webcam</button>
+                <button id="start-webcam-btn">Use Webcam Mode</button>
             </div>
-        </main>
+        </section>
+
+        <section class="info-content">
+            <h3>How AI Animal Face Analysis Works</h3>
+            <p>Our sophisticated AI model, trained on thousands of images, analyzes your facial features—such as eye shape, nose structure, and jawline—to determine your most striking animal resemblances. Are you a loyal Dog type or a mysterious Cat type?</p>
+        </section>
 
         <section class="lotto-section">
             <hr>
             <h2>🎰 Lucky Lotto Generator</h2>
-            <p class="subtitle">Get your lucky numbers for today!</p>
+            <p class="subtitle">Let the universe decide your numbers for today!</p>
             <div class="lotto-numbers" id="lotto-display">
                 <!-- Lotto numbers will appear here -->
             </div>
-            <button id="generate-lotto-btn" class="primary-btn">Generate Numbers</button>
-        </section>
-
-        <section class="partnership-section">
-            <hr>
-            <h2>Partnership Inquiry</h2>
-            <form action="https://formspree.io/f/mvzlgwel" method="POST" id="contact-form">
-                <div class="form-group">
-                    <input type="text" name="name" placeholder="Your Name" required>
-                </div>
-                <div class="form-group">
-                    <input type="email" name="_replyto" placeholder="Your Email" required>
-                </div>
-                <div class="form-group">
-                    <textarea name="message" placeholder="How can we help?" required></textarea>
-                </div>
-                <button type="submit" class="submit-btn">Send Inquiry</button>
-            </form>
+            <button id="generate-lotto-btn" class="primary-btn">Generate My Lucky Numbers</button>
         </section>
 
         <section class="comments-section">
             <hr>
-            <h2>Comments</h2>
+            <h2>Community Thoughts</h2>
             <div id="disqus_thread"></div>
             <script>
                 (function() {
                 var d = document, s = d.createElement('script');
                 s.src = 'https://aimhigh-max.disqus.com/embed.js';
-                s.setAttribute('data-timestamp', +new Date());
+                s.setAttribute('data-timestamp', +new Date());                
                 (d.head || d.body).appendChild(s);
                 })();
             </script>
         </section>
     </div>
+
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-info">
+                <p>&copy; 2026 AI & Lotto. All rights reserved.</p>
+            </div>
+            <ul class="footer-links">
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="privacy.html">Privacy Policy</a></li>
+                <li><a href="terms.html">Terms of Service</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </div>
+    </footer>
 
     <!-- TensorFlow.js and Teachable Machine -->
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>

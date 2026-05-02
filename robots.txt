@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://aimhigh-max.github.io/product-build1/sitemap.xml
