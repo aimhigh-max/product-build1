@@ -89,6 +89,27 @@ body {
     color: var(--button-bg);
 }
 
+.nav-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+#lang-toggle {
+    background-color: var(--toggle-bg);
+    padding: 0.5rem 0.8rem;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 45px;
+}
+
 #theme-toggle {
     background-color: var(--toggle-bg);
     width: 40px;

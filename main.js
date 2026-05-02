@@ -145,6 +145,8 @@ async function predict(input) {
     const prediction = await model.predict(input);
     for (let i = 0; i < maxPredictions; i++) {
         const className = prediction[i].className;
+        // Translate class name if it exists in translations
+        const translatedClassName = i18n.getText(className);
         const probability = (prediction[i].probability * 100).toFixed(0);
         
         const item = labelContainer.childNodes[i];
@@ -153,7 +155,7 @@ async function predict(input) {
             const probSpan = item.querySelector('.prediction-label span:last-child');
             const progressFill = item.querySelector('.progress-fill');
             
-            if (labelSpan) labelSpan.textContent = className;
+            if (labelSpan) labelSpan.textContent = translatedClassName;
             if (probSpan) probSpan.textContent = probability + '%';
             if (progressFill) progressFill.style.width = probability + '%';
         }
@@ -219,7 +221,7 @@ if (contactForm) {
         const originalText = submitBtn.textContent;
         
         submitBtn.disabled = true;
-        submitBtn.textContent = 'Sending...';
+        submitBtn.textContent = i18n.getText('sending');
         
         try {
             const response = await fetch(e.target.action, {
@@ -228,16 +230,16 @@ if (contactForm) {
                 headers: { 'Accept': 'application/json' }
             });
             if (response.ok) {
-                alert('Success! Your message has been sent.');
+                alert(i18n.getText('success_msg'));
                 contactForm.reset();
             } else {
-                alert('Oops! There was a problem sending your message.');
+                alert(i18n.getText('error_msg'));
             }
         } catch (error) {
-            alert('Oops! Something went wrong.');
+            alert(i18n.getText('generic_error'));
         } finally {
             submitBtn.disabled = false;
-            submitBtn.textContent = originalText;
+            submitBtn.textContent = i18n.getText('submit_btn');
         }
     });
 }

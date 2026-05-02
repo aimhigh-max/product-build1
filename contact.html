@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-5V65LB1K6R"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-5V65LB1K6R');
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us | 🐾 AI & 🎰 Lotto</title>
@@ -14,40 +23,43 @@
         })();
     </script>
 </head>
-<body>
+<body data-page-title="nav_contact">
     <header class="main-header">
         <nav class="nav-container">
             <div class="logo">
                 <a href="index.html">🐾 AI & 🎰 Lotto</a>
             </div>
             <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="index.html" data-i18n="nav_home">Home</a></li>
+                <li><a href="about.html" data-i18n="nav_about">About</a></li>
+                <li><a href="contact.html" data-i18n="nav_contact">Contact</a></li>
             </ul>
-            <button id="theme-toggle" aria-label="Toggle Dark/Light Mode">🌙</button>
+            <div class="nav-controls">
+                <button id="lang-toggle" aria-label="Switch Language">KO</button>
+                <button id="theme-toggle" aria-label="Toggle Dark/Light Mode">🌙</button>
+            </div>
         </nav>
     </header>
 
     <div class="container">
         <section class="content-page">
-            <h1>Contact Us</h1>
-            <p>Have questions, suggestions, or partnership inquiries? We'd love to hear from you!</p>
+            <h1 data-i18n="contact_title">Contact Us</h1>
+            <p data-i18n="contact_p">Have questions, suggestions, or partnership inquiries? We'd love to hear from you!</p>
             
             <form action="https://formspree.io/f/mvzlgwel" method="POST" id="contact-form" class="mt-2">
                 <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" id="name" name="name" placeholder="Your Name" required>
+                    <label for="name" data-i18n="label_name">Name</label>
+                    <input type="text" id="name" name="name" placeholder="Your Name" data-i18n="placeholder_name" required>
                 </div>
                 <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="_replyto" placeholder="Your Email" required>
+                    <label for="email" data-i18n="label_email">Email</label>
+                    <input type="email" id="email" name="_replyto" placeholder="Your Email" data-i18n="placeholder_email" required>
                 </div>
                 <div class="form-group">
-                    <label for="message">Message</label>
-                    <textarea id="message" name="message" placeholder="How can we help?" required></textarea>
+                    <label for="message" data-i18n="label_message">Message</label>
+                    <textarea id="message" name="message" placeholder="How can we help?" data-i18n="placeholder_message" required></textarea>
                 </div>
-                <button type="submit" class="submit-btn primary-btn">Send Message</button>
+                <button type="submit" class="submit-btn primary-btn" data-i18n="submit_btn">Send Message</button>
             </form>
         </section>
     </div>
@@ -55,17 +67,18 @@
     <footer class="main-footer">
         <div class="footer-container">
             <div class="footer-info">
-                <p>&copy; 2026 AI & Lotto. All rights reserved.</p>
+                <p data-i18n="footer_rights">&copy; 2026 AI & Lotto. All rights reserved.</p>
             </div>
             <ul class="footer-links">
-                <li><a href="about.html">About Us</a></li>
-                <li><a href="privacy.html">Privacy Policy</a></li>
-                <li><a href="terms.html">Terms of Service</a></li>
-                <li><a href="contact.html">Contact Us</a></li>
+                <li><a href="about.html" data-i18n="footer_about">About Us</a></li>
+                <li><a href="privacy.html" data-i18n="footer_privacy">Privacy Policy</a></li>
+                <li><a href="terms.html" data-i18n="footer_terms">Terms of Service</a></li>
+                <li><a href="contact.html" data-i18n="footer_contact">Contact Us</a></li>
             </ul>
         </div>
     </footer>
 
+    <script src="i18n.js"></script>
     <script src="main.js"></script>
 </body>
 </html>

@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-5V65LB1K6R"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-5V65LB1K6R');
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Privacy Policy | 🐾 AI & 🎰 Lotto</title>
@@ -14,61 +23,65 @@
         })();
     </script>
 </head>
-<body>
+<body data-page-title="footer_privacy">
     <header class="main-header">
         <nav class="nav-container">
             <div class="logo">
                 <a href="index.html">🐾 AI & 🎰 Lotto</a>
             </div>
             <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="index.html" data-i18n="nav_home">Home</a></li>
+                <li><a href="about.html" data-i18n="nav_about">About</a></li>
+                <li><a href="contact.html" data-i18n="nav_contact">Contact</a></li>
             </ul>
-            <button id="theme-toggle" aria-label="Toggle Dark/Light Mode">🌙</button>
+            <div class="nav-controls">
+                <button id="lang-toggle" aria-label="Switch Language">KO</button>
+                <button id="theme-toggle" aria-label="Toggle Dark/Light Mode">🌙</button>
+            </div>
         </nav>
     </header>
 
     <div class="container">
         <section class="content-page text-left">
-            <h1>Privacy Policy</h1>
-            <p>Last Updated: May 2, 2026</p>
+            <h1 data-i18n="privacy_title">Privacy Policy</h1>
+            <p data-i18n="privacy_last_updated">Last Updated: May 2, 2026</p>
             
-            <p>Your privacy is important to us. This Privacy Policy explains how <strong>AI & Lotto</strong> collects, uses, and protects your information when you use our website.</p>
+            <p data-i18n="privacy_p1">Your privacy is important to us. This Privacy Policy explains how <strong>AI & Lotto</strong> collects, uses, and protects your information when you use our website.</p>
 
-            <h3>1. Data Collection</h3>
-            <p>We do not store your personal photos on our servers. The AI Animal Face Test process images locally in your browser using TensorFlow.js. When you use the webcam or upload a photo, the image data is processed on your device and discarded immediately after classification.</p>
+            <h3 data-i18n="privacy_h3_1">1. Data Collection</h3>
+            <p data-i18n="privacy_p2">We do not store your personal photos on our servers. The AI Animal Face Test process images locally in your browser using TensorFlow.js. When you use the webcam or upload a photo, the image data is processed on your device and discarded immediately after classification.</p>
 
-            <h3>2. Third-Party Services</h3>
-            <p>We use third-party services to enhance your experience:</p>
+            <h3 data-i18n="privacy_h3_2">2. Third-Party Services</h3>
+            <p data-i18n="privacy_p3">We use third-party services to enhance your experience:</p>
             <ul>
-                <li><strong>Google AdSense:</strong> We use Google AdSense to serve advertisements. Google may use cookies to serve ads based on your previous visits to our site or other sites on the Internet.</li>
-                <li><strong>Formspree:</strong> Our partnership inquiry form is powered by Formspree. Data you submit via the form is sent to our email.</li>
-                <li><strong>Disqus:</strong> We use Disqus for our community comments section. Disqus may collect information as described in their own privacy policy.</li>
+                <li data-i18n="privacy_li1"><strong>Google AdSense:</strong> We use Google AdSense to serve advertisements. Google may use cookies to serve ads based on your previous visits to our site or other sites on the Internet.</li>
+                <li data-i18n="privacy_li2"><strong>Formspree:</strong> Our partnership inquiry form is powered by Formspree. Data you submit via the form is sent to our email.</li>
+                <li data-i18n="privacy_li3"><strong>Disqus:</strong> We use Disqus for our community comments section. Disqus may collect information as described in their own privacy policy.</li>
             </ul>
 
-            <h3>3. Cookies</h3>
-            <p>We use cookies to save your theme preferences (Dark/Light mode). Third-party vendors, including Google, use cookies to serve ads based on a user's prior visits to your website or other websites.</p>
+            <h3 data-i18n="privacy_h3_3">3. Cookies</h3>
+            <p data-i18n="privacy_p4">We use cookies to save your theme preferences (Dark/Light mode). Third-party vendors, including Google, use cookies to serve ads based on a user's prior visits to your website or other websites.</p>
 
-            <h3>4. Contact Us</h3>
-            <p>If you have any questions about this Privacy Policy, please contact us via our <a href="contact.html">Contact Page</a>.</p>
+            <h3 data-i18n="privacy_h3_4">4. Contact Us</h3>
+            <p data-i18n="privacy_p5">If you have any questions about this Privacy Policy, please contact us via our <a href="contact.html" data-i18n="nav_contact">Contact Page</a>.</p>
         </section>
     </div>
 
     <footer class="main-footer">
         <div class="footer-container">
             <div class="footer-info">
-                <p>&copy; 2026 AI & Lotto. All rights reserved.</p>
+                <p data-i18n="footer_rights">&copy; 2026 AI & Lotto. All rights reserved.</p>
             </div>
             <ul class="footer-links">
-                <li><a href="about.html">About Us</a></li>
-                <li><a href="privacy.html">Privacy Policy</a></li>
-                <li><a href="terms.html">Terms of Service</a></li>
-                <li><a href="contact.html">Contact Us</a></li>
+                <li><a href="about.html" data-i18n="footer_about">About Us</a></li>
+                <li><a href="privacy.html" data-i18n="footer_privacy">Privacy Policy</a></li>
+                <li><a href="terms.html" data-i18n="footer_terms">Terms of Service</a></li>
+                <li><a href="contact.html" data-i18n="footer_contact">Contact Us</a></li>
             </ul>
         </div>
     </footer>
 
+    <script src="i18n.js"></script>
     <script src="main.js"></script>
 </body>
 </html>

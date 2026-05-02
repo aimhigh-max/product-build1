@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-5V65LB1K6R"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-5V65LB1K6R');
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Terms of Service | 🐾 AI & 🎰 Lotto</title>
@@ -14,54 +23,58 @@
         })();
     </script>
 </head>
-<body>
+<body data-page-title="footer_terms">
     <header class="main-header">
         <nav class="nav-container">
             <div class="logo">
                 <a href="index.html">🐾 AI & 🎰 Lotto</a>
             </div>
             <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="index.html" data-i18n="nav_home">Home</a></li>
+                <li><a href="about.html" data-i18n="nav_about">About</a></li>
+                <li><a href="contact.html" data-i18n="nav_contact">Contact</a></li>
             </ul>
-            <button id="theme-toggle" aria-label="Toggle Dark/Light Mode">🌙</button>
+            <div class="nav-controls">
+                <button id="lang-toggle" aria-label="Switch Language">KO</button>
+                <button id="theme-toggle" aria-label="Toggle Dark/Light Mode">🌙</button>
+            </div>
         </nav>
     </header>
 
     <div class="container">
         <section class="content-page text-left">
-            <h1>Terms of Service</h1>
-            <p>Welcome to AI & Lotto. By accessing our website, you agree to the following terms:</p>
+            <h1 data-i18n="terms_title">Terms of Service</h1>
+            <p data-i18n="terms_p1">Welcome to AI & Lotto. By accessing our website, you agree to the following terms:</p>
 
-            <h3>1. Use of Services</h3>
-            <p>The AI Animal Face Test and Lotto Generator are provided for entertainment purposes only. We do not guarantee the accuracy of the AI classification or the winning probability of the generated lotto numbers.</p>
+            <h3 data-i18n="terms_h3_1">1. Use of Services</h3>
+            <p data-i18n="terms_p2">The AI Animal Face Test and Lotto Generator are provided for entertainment purposes only. We do not guarantee the accuracy of the AI classification or the winning probability of the generated lotto numbers.</p>
 
-            <h3>2. Intellectual Property</h3>
-            <p>All content, designs, and code on this website are the property of AI & Lotto unless otherwise stated. You may not reproduce or distribute any part of this site without permission.</p>
+            <h3 data-i18n="terms_h3_2">2. Intellectual Property</h3>
+            <p data-i18n="terms_p3">All content, designs, and code on this website are the property of AI & Lotto unless otherwise stated. You may not reproduce or distribute any part of this site without permission.</p>
 
-            <h3>3. Limitation of Liability</h3>
-            <p>AI & Lotto shall not be liable for any direct, indirect, or incidental damages arising from your use of the website or the services provided.</p>
+            <h3 data-i18n="terms_h3_3">3. Limitation of Liability</h3>
+            <p data-i18n="terms_p4">AI & Lotto shall not be liable for any direct, indirect, or incidental damages arising from your use of the website or the services provided.</p>
 
-            <h3>4. Changes to Terms</h3>
-            <p>We reserve the right to modify these terms at any time. Your continued use of the site constitutes acceptance of the updated terms.</p>
+            <h3 data-i18n="terms_h3_4">4. Changes to Terms</h3>
+            <p data-i18n="terms_p5">We reserve the right to modify these terms at any time. Your continued use of the site constitutes acceptance of the updated terms.</p>
         </section>
     </div>
 
     <footer class="main-footer">
         <div class="footer-container">
             <div class="footer-info">
-                <p>&copy; 2026 AI & Lotto. All rights reserved.</p>
+                <p data-i18n="footer_rights">&copy; 2026 AI & Lotto. All rights reserved.</p>
             </div>
             <ul class="footer-links">
-                <li><a href="about.html">About Us</a></li>
-                <li><a href="privacy.html">Privacy Policy</a></li>
-                <li><a href="terms.html">Terms of Service</a></li>
-                <li><a href="contact.html">Contact Us</a></li>
+                <li><a href="about.html" data-i18n="footer_about">About Us</a></li>
+                <li><a href="privacy.html" data-i18n="footer_privacy">Privacy Policy</a></li>
+                <li><a href="terms.html" data-i18n="footer_terms">Terms of Service</a></li>
+                <li><a href="contact.html" data-i18n="footer_contact">Contact Us</a></li>
             </ul>
         </div>
     </footer>
 
+    <script src="i18n.js"></script>
     <script src="main.js"></script>
 </body>
 </html>

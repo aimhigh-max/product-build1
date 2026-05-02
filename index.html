@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-5V65LB1K6R"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-5V65LB1K6R');
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>🐾 Animal Face Test & 🎰 Lotto Generator</title>
@@ -8,6 +17,7 @@
     <meta name="google-adsense-account" content="ca-pub-1670359000913052">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1670359000913052"
      crossorigin="anonymous"></script>
+    <script async src="httpsai.claude.com/script.js"></script>
     <link rel="stylesheet" href="style.css">
     <!-- Blocking script to prevent theme flickering -->
     <script>
@@ -26,31 +36,34 @@
                 <a href="index.html">🐾 AI & 🎰 Lotto</a>
             </div>
             <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="index.html" data-i18n="nav_home">Home</a></li>
+                <li><a href="about.html" data-i18n="nav_about">About</a></li>
+                <li><a href="contact.html" data-i18n="nav_contact">Contact</a></li>
             </ul>
-            <button id="theme-toggle" aria-label="Toggle Dark/Light Mode">🌙</button>
+            <div class="nav-controls">
+                <button id="lang-toggle" aria-label="Switch Language">KO</button>
+                <button id="theme-toggle" aria-label="Toggle Dark/Light Mode">🌙</button>
+            </div>
         </nav>
     </header>
 
     <div class="container">
         <section class="hero-section">
-            <h1>Find Your Animal Face & Your Fortune</h1>
-            <p class="hero-subtitle">Combining advanced AI technology with classic luck generation.</p>
+            <h1 data-i18n="hero_title">Find Your Animal Face & Your Fortune</h1>
+            <p class="hero-subtitle" data-i18n="hero_subtitle">Combining advanced AI technology with classic luck generation.</p>
         </section>
 
         <main class="test-area">
             <header>
-                <h2>🐾 Animal Face Test</h2>
-                <p class="subtitle">Are you more like a Dog or a Cat? Upload a photo to find out!</p>
+                <h2 data-i18n="test_title">🐾 Animal Face Test</h2>
+                <p class="subtitle" data-i18n="test_subtitle">Are you more like a Dog or a Cat? Upload a photo to find out!</p>
             </header>
 
             <div id="upload-container" class="upload-box">
                 <input type="file" id="image-upload" accept="image/*" hidden>
                 <label for="image-upload" class="upload-label">
                     <span class="upload-icon">📸</span>
-                    <span class="upload-text">Upload Photo or Click to Start</span>
+                    <span class="upload-text" data-i18n="upload_text">Upload Photo or Click to Start</span>
                 </label>
             </div>
             
@@ -58,38 +71,38 @@
             
             <div id="loading" class="loading-spinner" style="display: none;">
                 <div class="spinner"></div>
-                <p>Analyzing face with AI...</p>
+                <p data-i18n="analyzing">Analyzing face with AI...</p>
             </div>
 
             <div id="result-container" class="result-box" style="display: none;">
                 <img id="face-image" src="" alt="Your face" style="display: none; max-width: 100%; border-radius: 15px; margin-bottom: 20px;">
                 <div id="label-container"></div>
-                <button id="restart-btn" class="secondary-btn">Try Again</button>
+                <button id="restart-btn" class="secondary-btn" data-i18n="try_again">Try Again</button>
             </div>
 
             <div class="controls">
-                <button id="start-webcam-btn">Use Webcam Mode</button>
+                <button id="start-webcam-btn" data-i18n="use_webcam">Use Webcam Mode</button>
             </div>
         </section>
 
         <section class="info-content">
-            <h3>How AI Animal Face Analysis Works</h3>
-            <p>Our sophisticated AI model, trained on thousands of images, analyzes your facial features—such as eye shape, nose structure, and jawline—to determine your most striking animal resemblances. Are you a loyal Dog type or a mysterious Cat type?</p>
+            <h3 data-i18n="how_it_works_title">How AI Animal Face Analysis Works</h3>
+            <p data-i18n="how_it_works_p">Our sophisticated AI model, trained on thousands of images, analyzes your facial features—such as eye shape, nose structure, and jawline—to determine your most striking animal resemblances. Are you a loyal Dog type or a mysterious Cat type?</p>
         </section>
 
         <section class="lotto-section">
             <hr>
-            <h2>🎰 Lucky Lotto Generator</h2>
-            <p class="subtitle">Let the universe decide your numbers for today!</p>
+            <h2 data-i18n="lotto_title">🎰 Lucky Lotto Generator</h2>
+            <p class="subtitle" data-i18n="lotto_subtitle">Let the universe decide your numbers for today!</p>
             <div class="lotto-numbers" id="lotto-display">
                 <!-- Lotto numbers will appear here -->
             </div>
-            <button id="generate-lotto-btn" class="primary-btn">Generate My Lucky Numbers</button>
+            <button id="generate-lotto-btn" class="primary-btn" data-i18n="lotto_btn">Generate My Lucky Numbers</button>
         </section>
 
         <section class="comments-section">
             <hr>
-            <h2>Community Thoughts</h2>
+            <h2 data-i18n="community_title">Community Thoughts</h2>
             <div id="disqus_thread"></div>
             <script>
                 (function() {
@@ -105,13 +118,13 @@
     <footer class="main-footer">
         <div class="footer-container">
             <div class="footer-info">
-                <p>&copy; 2026 AI & Lotto. All rights reserved.</p>
+                <p data-i18n="footer_rights">&copy; 2026 AI & Lotto. All rights reserved.</p>
             </div>
             <ul class="footer-links">
-                <li><a href="about.html">About Us</a></li>
-                <li><a href="privacy.html">Privacy Policy</a></li>
-                <li><a href="terms.html">Terms of Service</a></li>
-                <li><a href="contact.html">Contact Us</a></li>
+                <li><a href="about.html" data-i18n="footer_about">About Us</a></li>
+                <li><a href="privacy.html" data-i18n="footer_privacy">Privacy Policy</a></li>
+                <li><a href="terms.html" data-i18n="footer_terms">Terms of Service</a></li>
+                <li><a href="contact.html" data-i18n="footer_contact">Contact Us</a></li>
             </ul>
         </div>
     </footer>
@@ -119,6 +132,7 @@
     <!-- TensorFlow.js and Teachable Machine -->
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
+    <script src="i18n.js"></script>
     <script src="main.js"></script>
 </body>
 </html>
