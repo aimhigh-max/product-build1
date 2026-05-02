@@ -7,6 +7,7 @@ A simple, modern, and responsive lottery number generator built with Vanilla JS.
 - **Random Generation:** Generates 6 unique numbers between 1 and 45.
 - **Sorted Display:** Numbers are automatically sorted for easy reading.
 - **Theme Support:** 🌓 Toggle between Dark and Light modes.
+- **Partnership Inquiry:** ✉️ Integrated Formspree contact form for collaborations.
 - **Persistence:** Your theme preference is saved in your browser.
 - **Responsive Design:** Works beautifully on both desktop and mobile.
 
