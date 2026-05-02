@@ -1,6 +1,21 @@
 const lottoNumbersDiv = document.querySelector('.lotto-numbers');
 const generateBtn = document.querySelector('#generate-btn');
+const themeToggle = document.querySelector('#theme-toggle');
+const body = document.body;
 
+// Theme Toggle Logic
+const currentTheme = localStorage.getItem('theme');
+if (currentTheme === 'dark') {
+    body.classList.add('dark-mode');
+}
+
+themeToggle.addEventListener('click', () => {
+    body.classList.toggle('dark-mode');
+    const theme = body.classList.contains('dark-mode') ? 'dark' : 'light';
+    localStorage.setItem('theme', theme);
+});
+
+// Lotto Number Generation Logic
 function generateNumbers() {
     lottoNumbersDiv.innerHTML = '';
     const numbers = new Set();
