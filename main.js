@@ -59,3 +59,65 @@ generateBtn.addEventListener('click', generateNumbers);
 
 // Initial generation
 generateNumbers();
+
+/**
+ * Formspree AJAX Submission
+ */
+const contactForm = document.querySelector('#contact-form');
+
+if (contactForm) {
+    contactForm.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        const status = document.createElement('p');
+        status.style.marginTop = '10px';
+        status.style.fontSize = '0.9rem';
+        status.style.fontWeight = 'bold';
+        
+        const data = new FormData(event.target);
+        const submitBtn = contactForm.querySelector('.submit-btn');
+        const originalBtnText = submitBtn.textContent;
+        
+        try {
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Sending...';
+            
+            const response = await fetch(event.target.action, {
+                method: contactForm.method,
+                body: data,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+            
+            if (response.ok) {
+                status.textContent = 'Thanks! Your inquiry has been sent.';
+                status.style.color = '#28a745';
+                contactForm.reset();
+            } else {
+                const result = await response.json();
+                status.textContent = result.errors ? result.errors.map(error => error.message).join(', ') : 'Oops! There was a problem.';
+                status.style.color = '#dc3545';
+            }
+        } catch (error) {
+            status.textContent = 'Oops! There was a problem submitting your form';
+            status.style.color = '#dc3545';
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalBtnText;
+            
+            // Remove old status if exists
+            const oldStatus = contactForm.querySelector('.form-status');
+            if (oldStatus) oldStatus.remove();
+            
+            status.classList.add('form-status');
+            contactForm.appendChild(status);
+            
+            // Fade out message after 5 seconds
+            setTimeout(() => {
+                status.style.transition = 'opacity 1s';
+                status.style.opacity = '0';
+                setTimeout(() => status.remove(), 1000);
+            }, 5000);
+        }
+    });
+}
