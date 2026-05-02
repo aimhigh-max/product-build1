@@ -129,6 +129,44 @@ document.getElementById('restart-btn').addEventListener('click', () => {
     location.reload();
 });
 
+/**
+ * Lotto Generation
+ */
+const lottoDisplay = document.querySelector('#lotto-display');
+const generateLottoBtn = document.querySelector('#generate-lotto-btn');
+
+function generateLottoNumbers() {
+    lottoDisplay.innerHTML = '';
+    const numbers = new Set();
+    while (numbers.size < 6) {
+        const randomNumber = Math.floor(Math.random() * 45) + 1;
+        numbers.add(randomNumber);
+    }
+
+    const sortedNumbers = Array.from(numbers).sort((a, b) => a - b);
+
+    sortedNumbers.forEach((number, index) => {
+        const numberDiv = document.createElement('div');
+        numberDiv.classList.add('number');
+        numberDiv.textContent = number;
+        
+        // Simple entry animation
+        numberDiv.style.opacity = '0';
+        numberDiv.style.transform = 'translateY(10px)';
+        lottoDisplay.appendChild(numberDiv);
+        
+        setTimeout(() => {
+            numberDiv.style.opacity = '1';
+            numberDiv.style.transform = 'translateY(0)';
+        }, index * 100);
+    });
+}
+
+generateLottoBtn.addEventListener('click', generateLottoNumbers);
+
+// Initial lotto generation
+generateLottoNumbers();
+
 // Formspree AJAX
 const contactForm = document.querySelector('#contact-form');
 if (contactForm) {
