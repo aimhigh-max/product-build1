@@ -105,6 +105,11 @@
             <h2 data-i18n="community_title">Community Thoughts</h2>
             <div id="disqus_thread"></div>
             <script>
+                var disqus_config = function () {
+                    this.language = (localStorage.getItem('lang') || (navigator.language.startsWith('ko') ? 'ko' : 'en')) === 'ko' ? 'ko' : 'en';
+                    this.page.url = window.location.href;
+                    this.page.identifier = window.location.pathname;
+                };
                 (function() {
                 var d = document, s = d.createElement('script');
                 s.src = 'https://aimhigh-max.disqus.com/embed.js';

@@ -157,6 +157,7 @@ const i18n = {
         document.documentElement.lang = lang;
         this.applyTranslations();
         this.updateLangUI();
+        this.reloadDisqus();
     },
 
     applyTranslations() {
@@ -185,6 +186,19 @@ const i18n = {
         const langToggle = document.getElementById('lang-toggle');
         if (langToggle) {
             langToggle.textContent = this.currentLang === 'en' ? 'KO' : 'EN';
+        }
+    },
+
+    reloadDisqus() {
+        if (typeof DISQUS !== 'undefined' && document.getElementById('disqus_thread')) {
+            DISQUS.reset({
+                reload: true,
+                config: function () {
+                    this.language = i18n.currentLang === 'ko' ? 'ko' : 'en';
+                    this.page.url = window.location.href;
+                    this.page.identifier = window.location.pathname;
+                }
+            });
         }
     },
 
