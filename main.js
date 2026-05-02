@@ -4,15 +4,24 @@ const themeToggle = document.querySelector('#theme-toggle');
 const body = document.body;
 
 // Theme Toggle Logic
+const updateThemeIcon = (isDark) => {
+    themeToggle.textContent = isDark ? '☀️' : '🌙';
+};
+
 const currentTheme = localStorage.getItem('theme');
 if (currentTheme === 'dark') {
     body.classList.add('dark-mode');
+    updateThemeIcon(true);
+} else {
+    updateThemeIcon(false);
 }
 
 themeToggle.addEventListener('click', () => {
     body.classList.toggle('dark-mode');
-    const theme = body.classList.contains('dark-mode') ? 'dark' : 'light';
+    const isDark = body.classList.contains('dark-mode');
+    const theme = isDark ? 'dark' : 'light';
     localStorage.setItem('theme', theme);
+    updateThemeIcon(isDark);
 });
 
 // Lotto Number Generation Logic
